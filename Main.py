@@ -1,6 +1,7 @@
 import pygame
 import Player
 import Ball
+import Start_Menu
 
 
 class Game:
@@ -9,7 +10,7 @@ class Game:
         and limit speed of the game to 50 fps"""
         self.delta = self.clock.tick(70) / 1000.0
 
-    def __init__(self):
+    def __init__(self,mode):
         """Constructor of the Game"""
         self._running = True
         pygame.init()
@@ -17,17 +18,20 @@ class Game:
         # create main display - 640x400 window
         # try to use hardware acceleration
         self.screen = pygame.display.set_mode(self.size)#, pygame.HWSURFACE
-        pygame.display.set_caption('Game')
+        pygame.display.set_caption('AirHockey')
         self.clock = pygame.time.Clock()
         # set default tool
         self.tool = 'run'
-        self.player  = Player.Player(1, x=self.width/2, y=370,r = 30 )   # Синий нижний игрок
-        self.player2 = Player.Player(0, x=self.width/2, y=50,r = 30 )    # Красный верхний игрок
-        self.ball    = Ball.Ball()
+        self.player  = Player.Player(1,r = 30 )   # Синий нижний игрок
+        self.player.start_pos(self)
+        self.player2 = Player.Player(0,r = 30 )    # Красный верхний игрок
+        self.player2.start_pos(self)
+        self.ball    = Ball.Ball(x = self.width/2, y = self.height/2)
         self.ethik   = 10                                                  # Толщина отступов
         self.ecolor = (255,179,0)
         self.font = pygame.font.Font('materials/9013.ttf', 100)
         self.gate = 40                                                     # Полудлина ворот
+        self.mode = mode                                                   #0 - игра на одном ПК #1 - по сети
 
     def event_handler(self, event):
         """Handling one pygame event"""
@@ -81,5 +85,8 @@ class Game:
             self.render()
         self.cleanup()
 if __name__ == "__main__":
-    game = Game()
-    game.execute()
+    s = Start_Menu.Start_Menu()
+    s.execute()
+    if (s.Mode==1):
+        game = Game(mode=0)
+        game.execute()

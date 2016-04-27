@@ -3,7 +3,7 @@ import Player
 import math
 
 class Ball:
-    def __init__(self, Vx = 10, Vy = 10, x = 300, y = 300, a = 5, r = 12, color = (225,225,225)):
+    def __init__(self, Vx = 0, Vy = 0, x = 300, y = 300, a = 5, r = 12, color = (225,225,225)):
         self.Vx, self.Vy, self.x, self.y, self.a, self.r, self.color = Vx, Vy, x, y , a, r, color
         self.weight = 10
 
@@ -24,6 +24,7 @@ class Ball:
         sy1 = speedy1*sina - speedx1*cosa + player.vy
         speed = (sx1,sy1)
         return speed
+
     def check_hit(self, player, game):
         color = [(230,51,51),(54,116,225)]
         """Удар с правой гранью экрана"""
