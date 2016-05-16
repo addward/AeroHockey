@@ -2,6 +2,8 @@ import pygame
 import Player
 import Ball
 import Start_Menu
+import Server
+import Mulgame
 
 
 class Game:
@@ -13,7 +15,6 @@ class Game:
     def __init__(self,mode):
         """Constructor of the Game"""
         self._running = True
-        pygame.init()
         self.size = self.width, self.height = 450, 600
         # create main display - 640x400 window
         # try to use hardware acceleration
@@ -24,8 +25,8 @@ class Game:
         self.tool = 'run'
         self.player  = Player.Player(1,r = 30 )   # Синий нижний игрок
         self.player.start_pos(self)
-        self.player2 = Player.Player(0,r = 30 )    # Красный верхний игрок
-        self.player2.start_pos(self)
+        self.player0 = Player.Player(0,r = 30 )    # Красный верхний игрок
+        self.player0.start_pos(self)
         self.ball    = Ball.Ball(x = self.width/2, y = self.height/2)
         self.ethik   = 10                                                  # Толщина отступов
         self.ecolor = (255,179,0)
@@ -48,10 +49,10 @@ class Game:
         self.tick()
         self.pressed = pygame.key.get_pressed()
         self.ball.check_hit(self.player,self)
-        self.ball.check_hit(self.player2,self)
+        self.ball.check_hit(self.player0,self)
         self.ball.update(self)
         self.player.update(self)
-        self.player2.update(self)
+        self.player0.update(self)
 
     def render(self):
         """Render the scene"""
@@ -63,7 +64,7 @@ class Game:
         pygame.draw.rect(game.screen,self.ecolor,(0,self.height-self.ethik,self.width/2-self.gate,self.height))          # Край нижней грани
         pygame.draw.rect(game.screen,self.ecolor,(self.width/2+self.gate,self.height-self.ethik,self.width,self.height)) ###################
         self.player.render(self)
-        self.player2.render(self)
+        self.player0.render(self)
         self.ball.render(self)
         pygame.display.flip()
 
@@ -90,3 +91,9 @@ if __name__ == "__main__":
     if (s.Mode==1):
         game = Game(mode=0)
         game.execute()
+    if (s.Mode==3):
+        server = Server.Game()
+        server.execute()
+    if (s.Mode==2):
+        mulgame = Mulgame.Game()
+        mulgame.execute()
