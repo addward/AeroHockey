@@ -1,46 +1,35 @@
 import math
 
 class Vector:
-    def __init__(self,a):
-        self.koord = a
-        self.len = len(a)
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
+
     def __add__(self, b):
-        if (self.len == b.len):
-            new = Vector(list(self.koord))
-            for i in range(b.len):
-                new.koord[i] = self.koord[i]+b.koord[i]
-            return new
-        else:
-            print ("Error")
-            Vector.koord="Error"
-            return Vector
+        new = Vector(self.x, self.y)
+        new.x = self.x + b.x
+        new.y = self.y + b.y
+        return new
+
     def __sub__(self, b):
-        if (self.len == b.len):
-            new = Vector(list(self.koord))
-            for i in range(b.len):
-                new.koord[i] = self.koord[i] - b.koord[i]
-            return new
-        else:
-            print ("Error")
-            Vector.koord="Error"
-            return Vector
+        new = Vector(self.x, self.y)
+        new.x = self.x - b.x
+        new.y = self.y - b.y
+        return new
+
     def __mul__(self, b):
         if (type(b) is Vector):
-            if (self.len==b.len):
-                res=0
-                for i in range(b.len):
-                    res+=self.koord[i]*b.koord[i]
-                return res
+            res = self.x * b.x + self.y * b.y
+            return res
         elif (type(b) is float or type(b) is int):
-            new = Vector(list(self.koord))
-            for i in range(self.len):
-                    new.koord[i]=b*new.koord[i]
+            new = Vector(self.x, self.y)
+            new.x = b * new.x
+            new.y = b * new.y
             return new
         else:
             print ("Error")
             return 'Error'
+
     def mod(self):
-        mod=0
-        for i in range(self.len):
-            mod+=self.koord[i]**2
+        mod=self.x**2 + self.y**2
         return math.sqrt(mod)
