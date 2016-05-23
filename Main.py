@@ -89,7 +89,7 @@ if __name__ == "__main__":
     s = Start_Menu.Start_Menu()
     s.execute()
     if (s.Mode==1):
-        game = Game(mode=0)
+        game = Game(mode=1)
         game.execute()
     if (s.Mode==3):
         server = Server.Game()

@@ -3,7 +3,7 @@ import sys
 import Vector
 
 class Player():
-    def __init__(self, team, r = 12, x = 20, y = 20, vx = 1, vy = 1, a = 100, color = (245,234,213)):
+    def __init__(self, team, r = 12, x = 20, y = 20, vx = 1, vy = 1, a = 300, color = (245,234,213)):
         self.color = color
         self.r = r
         self.a =a
@@ -66,6 +66,6 @@ class Player():
             self.pos.y = (self._team+1)*game.height/2 - self.r - (self._team)*(game.ethik)
 
     def start_pos(self,game):
-        self.pos = Vector.Vector(game.width/2,(game.height-self.r*2)*self._team + (self._team+1)*self.r*2)
+        self.pos = Vector.Vector(game.width/2,(game.height-self.r*2)*self._team + abs(self._team-1)*self.r*2)
         self.speed = Vector.Vector(0,0)
 

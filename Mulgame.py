@@ -127,10 +127,6 @@ class Game:
 
     def decode_pos(self, position):
         pos = position.decode()
-        self.i+=1
-        if (self.i==50):
-            print(pos)
-            self.i=0
         flag = 0
         start = 1
         end = 0
