@@ -33,6 +33,9 @@ class Game:
         self.font = pygame.font.Font('materials/9013.ttf', 100)
         self.gate = 40                                                     # Полудлина ворот
         self.mode = mode                                                   #0 - игра на одном ПК #1 - по сети
+        self.sound = pygame.mixer.Sound('music/hit1.wav')
+        self.sound1 = pygame.mixer.Sound('music/score1.wav')
+
 
     def event_handler(self, event):
         """Handling one pygame event"""

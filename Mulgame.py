@@ -34,6 +34,7 @@ class Game:
         self.number = 0
         self.connect_server()
         self.mode = 2
+        self.sound1 = pygame.mixer.Sound('music/score1.wav')
         pygame.mouse.set_visible(False)
 
     def event_handler(self, event):
@@ -57,6 +58,7 @@ class Game:
         self.decode_pos(pos)
         if (score != self.player.score+self.player0.score):
             pygame.mouse.set_pos(self.players[self.number].pos.x,self.players[self.number].pos.y)
+            self.sound1.play(loops = 0)
 
     def render(self):
         """Render the scene"""

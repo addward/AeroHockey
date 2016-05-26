@@ -10,6 +10,9 @@ class Start_Menu:
         self.font1 = pygame.font.Font(None, 40)
         self.clock = pygame.time.Clock()
         self.Mode = 0
+        self.music = pygame.mixer.Sound('music/music.wav')          ###
+        self.music_channel = self.music.play(loops = -1)            ###Музыка
+        self.music_channel.set_volume(1)                            ###
     def execute(self):
         """Execution loop of the game"""
         while(self._running):

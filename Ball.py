@@ -51,6 +51,8 @@ class Ball:
                 game.player.start_pos(game)
                 game.player0.start_pos(game)
                 self.start_pos(game)
+                if (game.mode == 1):
+                    game.sound1.play(loops = 0)
             else:
                 self.pos.y = game.height - self.r - game.ethik
                 self.speed.y = -self.speed.y
@@ -62,6 +64,8 @@ class Ball:
                 game.player.start_pos(game)
                 game.player0.start_pos(game)
                 self.start_pos(game)
+                if (game.mode == 1):
+                    game.sound1.play(loops = 0)
             else:
                 self.pos.y = self.r + game.ethik
                 self.speed.y = -self.speed.y
@@ -74,6 +78,8 @@ class Ball:
             self.pos = player.pos + (self.pos-player.pos) * ((self.r+player.r) / mod)
             self.color = color[player._team]
             self.speed = self.speed_cal(player,cosa,sina)
+            if (game.mode == 1):
+                game.sound.play(loops = 0)
 
     def start_pos(self,game):
         self.speed = Vector.Vector(0,0)
